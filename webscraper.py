@@ -7,11 +7,17 @@ response = requests.get(url, timeout=5)
 content = BeautifulSoup(response.content, "html.parser")
 
 
-
-for tweetList in content.findAll('div', attrs={"class": "content"}):
+for tweet in content.findAll('div', attrs={"class": "content"}):
     tweetObject = {
-        "tweet": tweetList.find('p', attrs={"class":"TweetTextSize TweetTextSize--normal js-tweet-text tweet-text"})
+        #"tweet": tweet.find('p', attrs={
+        # "class":"TweetTextSize TweetTextSize--normal js-tweet-text tweet-text"})
+        #"likes": tweet.find('span', attrs={
+        # "class":"ProfileTweet-actionCountForPresentation"})
+        "emoji":tweet.find('img',attrs={
+            "class":"Emoji Emoji--forText"
+        })
     }
     print(tweetObject)
+ 
 
 
